@@ -1,0 +1,17 @@
+{% extends "main/index.html.twig" %}
+
+{% block body %}
+    <div class="row" style="margin-left: 50px; margin-top: 20px; margin-right: 20px;">
+        <div class="col-lg-12">
+            <div class="card">
+                <p class="modal-title" style="margin-left: 10px; margin-top: 10px; font-size: 18px;">{{title}}</p>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    {{form_start(form)}}
+                    {{form_widget(form)}}
+                    {{form_end(form)}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

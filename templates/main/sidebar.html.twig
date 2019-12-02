@@ -1,0 +1,18 @@
+<nav class="side-navbar">
+<span class="heading" style="color: mediumblue">Menu</span>
+    <ul class="list-unstyled">
+        <li><a href="{{path('books_page')}}" class="fa fa-book" style="color: black; font-size: 17px;">Books</a></li>
+        {% if is_granted('ROLE_ADMIN') %}
+        <li><a href="{{path('genres')}}" class="fa fa-paint-brush " style="color: black; font-size: 17px;">Genres</a></li>
+        <li><a href="{{path('authors')}}" class="fa fa-pencil " style="color: black; font-size: 17px;">Authors</a></li>
+        <hr>
+        <li><a href="{{ path('new_book')}}" class="fa fa-plus" style="color: black; font-size: 17px;">Add a single book</a></li>
+        <li><a href="{{ path('upload_books')}}" class="fa fa-upload" style="color: black; font-size: 17px;">Add multiple books</a></li>
+        <hr>
+        <li><a href="{{ path('history_page')}}" class="fa fa-clock-o" style="color: black; font-size: 17px;">History</a></li>
+        <li><a href="{{ path('admin')}}" class="fa fa-user" style="color: black; font-size: 17px;">Administration</a></li>
+        <hr>
+        <li><a href="{{ path('sender_page')}}" class="fa fa-envelope" style="color: black; font-size: 17px;">Sender</a></li>
+        {% endif %}
+    </ul>
+</nav>

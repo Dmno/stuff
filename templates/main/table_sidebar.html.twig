@@ -1,0 +1,27 @@
+{% block body %}
+{% if is_granted('ROLE_ADMIN') %}
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>GENRE</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Action</td>
+                        <td>Adventure</td>
+                        <td>Childrens</td>
+                        <td>Classic</td>
+                        <td>Fantasy</td>
+                        <td>Fiction</td>
+                        <td>Historical</td>
+                        <td>Philosophical</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

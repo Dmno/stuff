@@ -1,0 +1,100 @@
+{% extends "main/index.html.twig" %}
+
+{% block body %}
+
+<div class="row" style="margin-left: 50px; margin-top: 20px; margin-right: 20px;">
+    <div class="col-lg-12">
+        <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <div>Total results: ({{ pagination.getTotalItemCount }})</div>
+{#        <form action="" name="Filtering options">#}
+{#                <select name="genre" id="">#}
+{#                    <option value="0">Select genre</option>#}
+{#                    {% for genre in pagination %}#}
+{#                        <option value="{{ genre.genre }}">{{ genre.genre }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#                <button type="submit" class="btn btn-primary">Filter</button>#}
+{#        </form>#}
+{#        <a href="{{ path('books_by_genre', {'genre': 'Childrens'})}}">#}
+{#            <button class="btn btn-primary">Get children books</button>#}
+{#        </a>#}
+        <form>
+            <div class="input-group mb-3">
+                <input type="text"
+                       name="q"
+                       class="form-control"
+                       placeholder="Search..."
+                >
+                <div class="input-group-append">
+                    <button type="submit"
+                            class="btn btn-outline-secondary">
+                        <span class="fa fa-search"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+                </div>
+                    <table class="table" style="margin-left: 10px;">
+                        <thead>
+                        <tr>
+                            <th>{{ knp_pagination_sortable(pagination, 'ID', 'c.id') }}<div class="sort fa fa-sort"></div></th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Title', 'c.title') }}<div class="sort fa fa-sort"></div></th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Author', 'c.author') }}<div class="sort fa fa-sort"></div></th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Released', 'c.released') }}<div class="sort fa fa-sort"></div></th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Genre', 'c.genre') }}<div class="sort fa fa-sort"></div></th>
+                            {% if is_granted('ROLE_ADMIN') and is_granted('ROLE_USER') %}
+                                <th>{{ knp_pagination_sortable(pagination, 'Status', 'c.status') }}<div class="sort fa fa-sort"></div></th>
+                            {% else %}
+                                <th style="text-align: center;">{{ knp_pagination_sortable(pagination, 'Status', 'c.status') }}<div class="sort fa fa-sort"></div></th>
+                            {% endif %}
+
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <th style="text-align: center;">Actions</th>
+                            {% endif %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for book in pagination %}
+                            <tr>
+                                <th>{{ book.id }}</th>
+                                <td>{{ book.title }}</td>
+                                <td>{{ book.author }}</td>
+                                <td>{{ book.released }}</td>
+                                <td>{{ book.genre }}</td>
+                                <td>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        {{ book.status }}
+                                    {% elseif is_granted('ROLE_USER') and book.status == "Reserved" %}
+                                        <div style="color: red; font-weight: bold; text-align: center;">Reserved</div>
+                                        {% else %}
+                                            <div align="center">
+                                            <a href="{{ path('reserve_book', {'id': book.id})}}">
+                                                <button class="btn btn-success">Reserve</button>
+                                            </a>
+                                            </div>
+                                    {% endif %}
+                                </td>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                <td align="center">
+                                    <a href="{{ path('edit_book', {'id': book.id})}}">
+                                        <button class="btn btn-primary">Edit</button>
+                                    </a>
+                                    <a href="{{ path('delete_book', {'id': book.id})}}">
+                                        <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Delete</button>
+                                    </a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div style="margin-left: 30px;">
+                     {{ knp_pagination_render(pagination) }}
+                 </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+{% endblock %}

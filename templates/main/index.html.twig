@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Welcome to the main page!</h1>
+    <h2>You can do these things from here:</h2>
+    <ul>
+        <li><a href="{{ path('articles_page')}}">Go to articles</a></li>
+        <li><a href="{{ path('images_page')}}">Go to images</a></li>
+        <li><a href="{{ path('tables_page')}}">Go to data tables</a></li>
+    </ul>
+{% endblock %}
