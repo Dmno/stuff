@@ -37,9 +37,9 @@ class Book
     private $released;
 
     /**
-     * @ORM\Column(type="string", length=55)
+     * @ORM\Column(type="boolean")
      */
-    private $status;
+    private $status = false;
 
     public function getId(): ?int
     {

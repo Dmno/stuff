@@ -64,7 +64,7 @@ class HistoryController extends AbstractController
         $this->em->flush();
 
         $book = $bookRepository->findOneBy(array('title' => $title));
-        $book->setStatus("Available");
+        $book->setStatus(false);
         $this->em->flush();
 
         $this->addFlash('success', 'Reservation deleted!');

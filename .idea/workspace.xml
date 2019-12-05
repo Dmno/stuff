@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a807ee0-b7b1-4682-83c0-1ff878a5a6de" name="Default Changelist" comment="" />
+    <list default="true" id="5a807ee0-b7b1-4682-83c0-1ff878a5a6de" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/practise.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/practise.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BookController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HistoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HistoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SenderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SenderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DBAL/Types/BookStatusType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBAL/Types/BookStatusType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Book.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/History.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/History.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/SubsRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/SubsRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/history.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/history.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main/books.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/books.html.twig" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +45,9 @@
     </option>
     <expand />
     <select />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -140,10 +161,17 @@
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
       <path value="$PROJECT_DIR$/vendor/fresh/doctrine-enum-bundle" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1TTMHzZYpAFc6ZB4g2wcFkSkV32" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -195,10 +223,22 @@
       <workItem from="1574841685448" duration="96000" />
       <workItem from="1574844663283" duration="112000" />
       <workItem from="1575012961655" duration="9213000" />
+      <workItem from="1575530391748" duration="22169000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

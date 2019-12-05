@@ -64,8 +64,12 @@
                                 <td>{{ book.genre }}</td>
                                 <td>
                                     {% if is_granted('ROLE_ADMIN') %}
-                                        {{ book.status }}
-                                    {% elseif is_granted('ROLE_USER') and book.status == "Reserved" %}
+                                        {% if book.status == true %}
+                                            <p>Reserved</p>
+                                        {% else %}
+                                        <p>Available</p>
+                                        {% endif %}
+                                    {% elseif is_granted('ROLE_USER') and book.status == true %}
                                         <div style="color: red; font-weight: bold; text-align: center;">Reserved</div>
                                         {% else %}
                                             <div align="center">

@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Subs;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Subs|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,10 +16,28 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class SubsRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @var EntityManagerInterface
+     */
+    private $em;
+
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $entityManager)
     {
         parent::__construct($registry, Subs::class);
+        $this->em = $entityManager;
     }
+
+    public function incrementAmount(Subs $subs) :QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('h')
+                ->update(Subs::class, 's')
+                ->set('s.amount', $subs->getAmount() + 1);
+
+        $query = $qb->getQuery();
+
+    return $query->execute();
+    }
+
 
     // /**
     //  * @return Subs[] Returns an array of Subs objects

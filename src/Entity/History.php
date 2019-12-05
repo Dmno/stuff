@@ -27,9 +27,9 @@ class History
     private $book;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean")
      */
-    private $action;
+    private $action = false;
 
     public function getId(): ?int
     {

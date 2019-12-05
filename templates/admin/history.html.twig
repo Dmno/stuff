@@ -39,7 +39,12 @@
                             <th>{{ histor.id }}</th>
                             <td>{{ histor.user }}</td>
                             <td>{{ histor.book }}</td>
-                            <td>{{ histor.action }}</td>
+                            <td>{% if histor.action == true %}
+                                    <p>Reserved</p>
+                                {% else %}
+                                    <p>Available</p>
+                                {% endif %}
+                            </td>
                             <td align="center">
                                 <a href="{{ path('delete_reservation', {'id': histor.id})}}">
                                     <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this reservation?')">Delete</button>

@@ -4,8 +4,11 @@
 namespace App\Controller;
 
 use App\Entity\Records;
+use App\Entity\Subs;
 use App\Form\SenderType;
 use App\Repository\RecordsRepository;
+use App\Repository\SubsRepository;
+use App\Services\SenderService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -62,17 +65,17 @@ class SenderController extends AbstractController
             $serializer = new Serializer([new ObjectNormalizer()], [new CsvEncoder(',', '"', '\\', '//', true)]);
             $emails = $serializer->decode(preg_replace("/^".pack('H*','EFBBBF')."/", '', file_get_contents($csv)), 'csv');
 
-            foreach ($emails as $row) {
+            foreach ($emails as $email) {
                 $record = new Records();
 
-                $record->setEmail($row['email']);
-                $record->setName($row['name']);
-                $record->setLastname($row['lastname']);
+                $record->setEmail($email['email']);
+                $record->setName($email['name']);
+                $record->setLastname($email['lastname']);
 
                 $this->em->persist($record);
-                $this->em->flush();
-
             }
+            $this->em->flush();
+
             $this->get("security.csrf.token_manager")->refreshToken("form_intention");
             $this->addFlash('success', 'Added emails!');
             return $this->redirect($this->generateUrl('sender_page'));
@@ -86,37 +89,20 @@ class SenderController extends AbstractController
     /**
      * @Route("/sender/send", name="send_emails")
      */
-    public function sendEmails(Request $request, RecordsRepository $repository)
+    public function sendEmails(SenderService $senderService, SubsRepository $repository)
     {
-        $record = $this->em->getRepository(Records::class)->getFirstTen(10);
+        $records = $this->em->getRepository(Records::class)->getFirstTen(10);
+//        $sub = $repository->findAll();
 
-        $b = 0;
+        foreach ($records as $record) {
+            $senderService->sendEmailViaApi($record);
 
-        foreach ($record as $row) {
-            dd($row[0]);
-            $email = $row->email;
-            dd($email);
-            $name = $row->name;
-            $ip = "77.77.77.77";
+//            $this->em->$repository->incrementAmount();
+            $this->em->remove($record);
+            }
 
-            $ch = curl_init();
-
-            curl_setopt($ch, CURLOPT_URL, 'http://app.sendloop.com/api/v3/subscriber.subscribe/json');
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, "EmailAddress=".$email."&ListID=1&SubscriptionIP=".$ip."&Fields=".$name);
-            curl_setopt($ch, CURLOPT_POST, 1);
-
-            $headers = array();
-            $headers[] = 'Apikey: c691-beb4-637a-3e6d-e46a-d8b6-6f03-0ced';
-            $headers[] = 'Content-Type: application/x-www-form-urlencoded';
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-            $result3 = curl_exec($ch);
-
-            dd($result3);
-
-        }
-
+        $this->addFlash('success', 'Emails sent!');
+        $this->em->flush();
+        return $this->redirectToRoute('sender_page');
     }
-
 }

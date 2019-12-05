@@ -145,7 +145,6 @@ class BookController extends AbstractController
                 $book->setStatus(BookStatusType::AVAILABLE);
 
                 $this->em->persist($book);
-                $this->em->flush();
 
                 $repository = $this->em->getRepository(Author::class);
                 $authorExists = $repository->findOneBy(['fullName' => $row['author']]);
@@ -169,6 +168,7 @@ class BookController extends AbstractController
                     $this->em->flush();
                 }
             }
+                $this->em->flush();
                 $this->get("security.csrf.token_manager")->refreshToken("form_intention");
                 $this->addFlash('success', 'Started adding books!');
                  return $this->redirect($this->generateUrl('books_page'));
@@ -237,7 +237,7 @@ class BookController extends AbstractController
 
         $history->setUser($name);
         $history->setBook($title);
-        $history->setAction("Reserved");
+        $history->setAction(true);
 
         $this->em->persist($history);
         $this->em->flush();

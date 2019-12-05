@@ -7,13 +7,11 @@ use Fresh\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
 
 class BookStatusType extends AbstractEnumType
 {
-    public const RESERVED = 'Reserved';
-    public const AVAILABLE = 'Available';
-    public const DELETED = 'Deleted';
+    public const RESERVED = true;
+    public const AVAILABLE = false;
 
     protected static $choices = [
-        self::RESERVED => 'Reserved',
-        self::AVAILABLE => 'Available',
-        self::DELETED => 'Deleted'
+        self::RESERVED => true,
+        self::AVAILABLE => false
     ];
 }

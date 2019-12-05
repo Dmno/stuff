@@ -85,9 +85,9 @@ class AdminController extends AbstractController
 
         foreach ($history as $row) {
             $book = $row->getBook();
-            $found = $bookRepository->findBy(['title' => $book, 'status' => 'Reserved']);
-            foreach ($found as $fond) {
-                $fond->setStatus("Available");
+            $results = $bookRepository->findBy(['title' => $book, 'status' => true]);
+            foreach ($results as $result) {
+                $result->setStatus(false);
                 $this->em->flush();
             }
             $this->em->remove($row);
